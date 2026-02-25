@@ -199,171 +199,175 @@
 <script>
 const DATA = {
     msk: {
-        name: 'Москва',
-        unit: '₽/мес',
-        label: 'введи зп (₽/мес):',
-        ph: '300000',
-        note: '',
-        fmt: v => v.toLocaleString('ru-RU') + ' ₽/мес',
-        tiers: [
-            { max: 200000,   range: 'x < 200 000 ₽',                     desc: 'лютейшая нищета на грани выживания', c:'t1' },
-            { max: 350000,   range: '200 000 < x < 350 000 ₽',            desc: 'обычная нищета, ипотека на 30 лет, Пятёрочка, доширак по праздникам', c:'t2' },
-            { max: 600000,   range: '350 000 < x < 600 000 ₽',            desc: 'нормальная жизнь, ипотека на 15 лет, Kia Rio', c:'t3' },
-            { max: 1000000,  range: '600 000 < x < 1 000 000 ₽',          desc: 'хорошая жизнь, ипотека на 7 лет, Турция два раза в год', c:'t4' },
-            { max: Infinity, range: 'x > 1 000 000 ₽',                    desc: 'достаточно хорошая жизнь, квартира за кэш, BMW, девушка', c:'t5' }
+        name: 'Москва', unit: '₽/мес', label: 'введи зп (₽/мес):', ph: 300000, note: '',
+        sym: '₽', pre: false, locale: 'ru-RU', sep: ' ',
+        base: [200000, 350000, 600000, 1000000],
+        descs: [
+            'лютейшая нищета на грани выживания',
+            'обычная нищета, ипотека на 30 лет, Пятёрочка, доширак по праздникам',
+            'нормальная жизнь, ипотека на 15 лет, Kia Rio',
+            'хорошая жизнь, ипотека на 7 лет, Турция два раза в год',
+            'достаточно хорошая жизнь, квартира за кэш, BMW, девушка'
         ]
     },
     spb: {
-        name: 'Санкт-Петербург',
-        unit: '₽/мес',
-        label: 'введи зп (₽/мес):',
-        ph: '200000',
-        note: '',
-        fmt: v => v.toLocaleString('ru-RU') + ' ₽/мес',
-        tiers: [
-            { max: 150000,   range: 'x < 150 000 ₽',                     desc: 'лютейшая нищета, шаверма — роскошь', c:'t1' },
-            { max: 280000,   range: '150 000 < x < 280 000 ₽',            desc: 'обычная нищета, ипотека на 30 лет, Лента, кофе на вынос как шик', c:'t2' },
-            { max: 500000,   range: '280 000 < x < 500 000 ₽',            desc: 'нормальная жизнь, ипотека на 15 лет, Hyundai Solaris', c:'t3' },
-            { max: 800000,   range: '500 000 < x < 800 000 ₽',            desc: 'хорошая жизнь, ипотека на 7 лет, видишь солнце на Бали два раза в год', c:'t4' },
-            { max: Infinity, range: 'x > 800 000 ₽',                      desc: 'достаточно хорошая жизнь, квартира на Петроградке, Audi, девушка', c:'t5' }
+        name: 'Санкт-Петербург', unit: '₽/мес', label: 'введи зп (₽/мес):', ph: 200000, note: '',
+        sym: '₽', pre: false, locale: 'ru-RU', sep: ' ',
+        base: [150000, 280000, 500000, 800000],
+        descs: [
+            'лютейшая нищета, шаверма — роскошь',
+            'обычная нищета, ипотека на 30 лет, Лента, кофе на вынос как шик',
+            'нормальная жизнь, ипотека на 15 лет, Hyundai Solaris',
+            'хорошая жизнь, ипотека на 7 лет, видишь солнце на Бали два раза в год',
+            'достаточно хорошая жизнь, квартира на Петроградке, Audi, девушка'
         ]
     },
     bay: {
-        name: 'Bay Area',
-        unit: '$/yr',
-        label: 'enter salary ($/yr):',
-        ph: '200000',
-        note: '',
-        fmt: v => '$' + v.toLocaleString('en-US') + '/yr',
-        tiers: [
-            { max: 150000,   range: 'x < $150,000',                       desc: 'лютейшая нищета, комната на троих в Саннивейле', c:'t1' },
-            { max: 230000,   range: '$150,000 < x < $230,000',             desc: 'обычная нищета, ипотека на 30 лет, In-N-Out как fine dining, Costco', c:'t2' },
-            { max: 350000,   range: '$230,000 < x < $350,000',             desc: 'нормальная жизнь, ипотека на 15 лет, Tesla Model 3', c:'t3' },
-            { max: 600000,   range: '$350,000 < x < $600,000',             desc: 'хорошая жизнь, ипотека на 10 лет, organic всё, Napa по выходным', c:'t4' },
-            { max: Infinity, range: 'x > $600,000',                        desc: 'достаточно хорошая жизнь, дом в Пало-Альто, Porsche, девушка', c:'t5' }
+        name: 'Bay Area', unit: '$/yr', label: 'enter salary ($/yr):', ph: 200000, note: '',
+        sym: '$', pre: true, locale: 'en-US', sep: ',',
+        base: [150000, 230000, 350000, 600000],
+        descs: [
+            'лютейшая нищета, комната на троих в Саннивейле',
+            'обычная нищета, ипотека на 30 лет, In-N-Out как fine dining, Costco',
+            'нормальная жизнь, ипотека на 15 лет, Tesla Model 3',
+            'хорошая жизнь, ипотека на 10 лет, organic всё, Napa по выходным',
+            'достаточно хорошая жизнь, дом в Пало-Альто, Porsche, девушка'
         ]
     },
     nyc: {
-        name: 'New York',
-        unit: '$/yr',
-        label: 'enter salary ($/yr):',
-        ph: '180000',
-        note: '',
-        fmt: v => '$' + v.toLocaleString('en-US') + '/yr',
-        tiers: [
-            { max: 130000,   range: 'x < $130,000',                       desc: 'лютейшая нищета, шкаф в Бруклине за $2500/мес', c:'t1' },
-            { max: 200000,   range: '$130,000 < x < $200,000',             desc: 'обычная нищета, ипотека на 30 лет в Нью-Джерси, dollar pizza, Trader Joe\'s', c:'t2' },
-            { max: 320000,   range: '$200,000 < x < $320,000',             desc: 'нормальная жизнь, квартира на Манхэттене, Uber вместо сабвея', c:'t3' },
-            { max: 550000,   range: '$320,000 < x < $550,000',             desc: 'хорошая жизнь, ипотека на 10 лет, уикенды в Хэмптонс', c:'t4' },
-            { max: Infinity, range: 'x > $550,000',                        desc: 'достаточно хорошая жизнь, пентхаус, Мишлен по вторникам, девушка', c:'t5' }
+        name: 'New York', unit: '$/yr', label: 'enter salary ($/yr):', ph: 180000, note: '',
+        sym: '$', pre: true, locale: 'en-US', sep: ',',
+        base: [130000, 200000, 320000, 550000],
+        descs: [
+            'лютейшая нищета, шкаф в Бруклине за $2500/мес',
+            'обычная нищета, ипотека на 30 лет в Нью-Джерси, dollar pizza, Trader Joe\'s',
+            'нормальная жизнь, квартира на Манхэттене, Uber вместо сабвея',
+            'хорошая жизнь, ипотека на 10 лет, уикенды в Хэмптонс',
+            'достаточно хорошая жизнь, пентхаус, Мишлен по вторникам, девушка'
         ]
     },
     london: {
-        name: 'London',
-        unit: '\u00A3/yr',
-        label: 'enter salary (\u00A3/yr):',
-        ph: '400000',
-        note: '',
-        fmt: v => '\u00A3' + v.toLocaleString('en-GB') + '/yr',
-        tiers: [
-            { max: 360000,   range: 'x < \u00A3360,000',                          desc: 'лютейшая нищета, зона 6, бобы на тосте, час на Elizabeth line в одну сторону', c:'t1' },
-            { max: 540000,   range: '\u00A3360,000 < x < \u00A3540,000',           desc: 'обычная нищета, ипотека на 35 лет, паб раз в неделю, Tesco meal deal', c:'t2' },
-            { max: 810000,   range: '\u00A3540,000 < x < \u00A3810,000',           desc: 'нормальная жизнь, ипотека на 20 лет, зона 2, Volkswagen Golf', c:'t3' },
-            { max: 1350000,  range: '\u00A3810,000 < x < \u00A31,350,000',         desc: 'хорошая жизнь, таунхаус в зоне 2, Ибица на выходных, Waitrose', c:'t4' },
-            { max: Infinity, range: 'x > \u00A31,350,000',                         desc: 'достаточно хорошая жизнь, дом в Челси, Range Rover, девушка', c:'t5' }
+        name: 'London', unit: '\u00A3/yr', label: 'enter salary (\u00A3/yr):', ph: 400000, note: '',
+        sym: '\u00A3', pre: true, locale: 'en-GB', sep: ',',
+        base: [360000, 540000, 810000, 1350000],
+        descs: [
+            'лютейшая нищета, зона 6, бобы на тосте, час на Elizabeth line в одну сторону',
+            'обычная нищета, ипотека на 35 лет, паб раз в неделю, Tesco meal deal',
+            'нормальная жизнь, ипотека на 20 лет, зона 2, Volkswagen Golf',
+            'хорошая жизнь, таунхаус в зоне 2, Ибица на выходных, Waitrose',
+            'достаточно хорошая жизнь, дом в Челси, Range Rover, девушка'
         ]
     },
     berlin: {
-        name: 'Berlin',
-        unit: '\u20AC/yr',
-        label: 'enter salary (\u20AC/yr):',
-        ph: '80000',
-        note: '',
-        fmt: v => '\u20AC' + v.toLocaleString('de-DE') + '/yr',
-        tiers: [
-            { max: 65000,    range: 'x < \u20AC65.000',                           desc: 'лютейшая нищета, WG на пятерых, кебаб за 4 евро — роскошь, Pfand собираешь', c:'t1' },
-            { max: 100000,   range: '\u20AC65.000 < x < \u20AC100.000',            desc: 'обычная нищета, 1-Zimmer в Нойкёльне, Lidl, Berghain по субботам', c:'t2' },
-            { max: 160000,   range: '\u20AC100.000 < x < \u20AC160.000',           desc: 'нормальная жизнь, квартира в Пренцлауэр-Берг, ипотека на 20 лет, VW Golf', c:'t3' },
-            { max: 250000,   range: '\u20AC160.000 < x < \u20AC250.000',           desc: 'хорошая жизнь, лофт в Митте, Мальорка на выходных, Bio-рынок по субботам', c:'t4' },
-            { max: Infinity, range: 'x > \u20AC250.000',                           desc: 'достаточно хорошая жизнь, пентхаус у Тиргартена, Porsche Taycan, девушка', c:'t5' }
+        name: 'Berlin', unit: '\u20AC/yr', label: 'enter salary (\u20AC/yr):', ph: 80000, note: '',
+        sym: '\u20AC', pre: true, locale: 'de-DE', sep: '.',
+        base: [65000, 100000, 160000, 250000],
+        descs: [
+            'лютейшая нищета, WG на пятерых, кебаб за 4 евро — роскошь, Pfand собираешь',
+            'обычная нищета, 1-Zimmer в Нойкёльне, Lidl, Berghain по субботам',
+            'нормальная жизнь, квартира в Пренцлауэр-Берг, ипотека на 20 лет, VW Golf',
+            'хорошая жизнь, лофт в Митте, Мальорка на выходных, Bio-рынок по субботам',
+            'достаточно хорошая жизнь, пентхаус у Тиргартена, Porsche Taycan, девушка'
         ]
     },
     dubai: {
-        name: 'Dubai',
-        unit: '$/yr',
-        label: 'enter salary ($/yr):',
-        ph: '100000',
-        note: 'tax-free zone',
-        fmt: v => '$' + v.toLocaleString('en-US') + '/yr',
-        tiers: [
-            { max: 70000,    range: 'x < $70,000',                        desc: 'лютейшая нищета, комната в Дейре, метро и жара', c:'t1' },
-            { max: 120000,   range: '$70,000 < x < $120,000',              desc: 'обычная нищета, студия в JLT, бранч раз в месяц, Carrefour', c:'t2' },
-            { max: 200000,   range: '$120,000 < x < $200,000',             desc: 'нормальная жизнь, квартира в Марине, Toyota Land Cruiser', c:'t3' },
-            { max: 350000,   range: '$200,000 < x < $350,000',             desc: 'хорошая жизнь, вилла, бизнес-класс на отдых', c:'t4' },
-            { max: Infinity, range: 'x > $350,000',                        desc: 'достаточно хорошая жизнь, пентхаус в Downtown, Lamborghini, девушка', c:'t5' }
+        name: 'Dubai', unit: '$/yr', label: 'enter salary ($/yr):', ph: 100000, note: 'tax-free zone',
+        sym: '$', pre: true, locale: 'en-US', sep: ',',
+        base: [70000, 120000, 200000, 350000],
+        descs: [
+            'лютейшая нищета, комната в Дейре, метро и жара',
+            'обычная нищета, студия в JLT, бранч раз в месяц, Carrefour',
+            'нормальная жизнь, квартира в Марине, Toyota Land Cruiser',
+            'хорошая жизнь, вилла, бизнес-класс на отдых',
+            'достаточно хорошая жизнь, пентхаус в Downtown, Lamborghini, девушка'
         ]
     },
     tbilisi: {
-        name: 'Тбилиси',
-        unit: '$/мес',
-        label: 'введи зп ($/мес):',
-        ph: '4000',
-        note: 'IT-релокант edition',
-        fmt: v => '$' + v.toLocaleString('en-US') + '/мес',
-        tiers: [
-            { max: 2000,     range: 'x < $2,000',                         desc: 'лютейшая нищета, хинкали считаешь поштучно', c:'t1' },
-            { max: 3500,     range: '$2,000 < x < $3,500',                 desc: 'обычная нищета, аренда в Сабуртало, вино из магазина, Carrefour', c:'t2' },
-            { max: 5500,     range: '$3,500 < x < $5,500',                 desc: 'нормальная жизнь, квартира в Ваке, ужины на Агмашенебели', c:'t3' },
-            { max: 9000,     range: '$5,500 < x < $9,000',                 desc: 'хорошая жизнь, лофт в старом городе, Европа каждый месяц', c:'t4' },
-            { max: Infinity, range: 'x > $9,000',                          desc: 'достаточно хорошая жизнь, дом с видом на горы, Land Cruiser, девушка', c:'t5' }
+        name: 'Тбилиси', unit: '$/мес', label: 'введи зп ($/мес):', ph: 4000, note: 'IT-релокант edition',
+        sym: '$', pre: true, locale: 'en-US', sep: ',',
+        base: [2000, 3500, 5500, 9000],
+        descs: [
+            'лютейшая нищета, хинкали считаешь поштучно',
+            'обычная нищета, аренда в Сабуртало, вино из магазина, Carrefour',
+            'нормальная жизнь, квартира в Ваке, ужины на Агмашенебели',
+            'хорошая жизнь, лофт в старом городе, Европа каждый месяц',
+            'достаточно хорошая жизнь, дом с видом на горы, Land Cruiser, девушка'
         ]
     },
     belgrade: {
-        name: 'Belgrade',
-        unit: '\u20AC/мес',
-        label: 'введи зп (\u20AC/мес):',
-        ph: '7000',
-        note: 'IT-релокант edition',
-        fmt: v => '\u20AC' + v.toLocaleString('de-DE') + '/мес',
-        tiers: [
-            { max: 4500,     range: 'x < \u20AC4.500',                            desc: 'лютейшая нищета, ћевапи считаешь поштучно', c:'t1' },
-            { max: 8400,     range: '\u20AC4.500 < x < \u20AC8.400',               desc: 'обычная нищета, аренда на Врачаре, кафана раз в неделю, Maxi', c:'t2' },
-            { max: 13500,    range: '\u20AC8.400 < x < \u20AC13.500',              desc: 'нормальная жизнь, своя квартира через 15 лет, Škoda Octavia', c:'t3' },
-            { max: 21000,    range: '\u20AC13.500 < x < \u20AC21.000',             desc: 'хорошая жизнь, квартира на Дединье, Греция каждый месяц', c:'t4' },
-            { max: Infinity, range: 'x > \u20AC21.000',                            desc: 'достаточно хорошая жизнь, пентхаус в Белграде на воде, BMW X5, девушка', c:'t5' }
+        name: 'Belgrade', unit: '\u20AC/мес', label: 'введи зп (\u20AC/мес):', ph: 7000, note: 'IT-релокант edition',
+        sym: '\u20AC', pre: true, locale: 'de-DE', sep: '.',
+        base: [4500, 8400, 13500, 21000],
+        descs: [
+            'лютейшая нищета, ћевапи считаешь поштучно',
+            'обычная нищета, аренда на Врачаре, кафана раз в неделю, Maxi',
+            'нормальная жизнь, своя квартира через 15 лет, Škoda Octavia',
+            'хорошая жизнь, квартира на Дединье, Греция каждый месяц',
+            'достаточно хорошая жизнь, пентхаус в Белграде на воде, BMW X5, девушка'
         ]
     },
     paris: {
-        name: 'Paris',
-        unit: '\u20AC/yr',
-        label: 'enter salary (\u20AC/yr):',
-        ph: '150000',
-        note: '',
-        fmt: v => '\u20AC' + v.toLocaleString('de-DE') + '/yr',
-        tiers: [
-            { max: 120000,   range: 'x < \u20AC120.000',                           desc: 'лютейшая нищета, chambre de bonne 9м², багет как основное блюдо', c:'t1' },
-            { max: 180000,   range: '\u20AC120.000 < x < \u20AC180.000',            desc: 'обычная нищета, студия за периферик, вино из Monoprix, кино раз в месяц', c:'t2' },
-            { max: 270000,   range: '\u20AC180.000 < x < \u20AC270.000',            desc: 'нормальная жизнь, квартира в 11-м, ипотека на 25 лет, Peugeot 308', c:'t3' },
-            { max: 450000,   range: '\u20AC270.000 < x < \u20AC450.000',            desc: 'хорошая жизнь, квартира в Марэ, ипотека на 15 лет, Лазурный берег летом', c:'t4' },
-            { max: Infinity, range: 'x > \u20AC450.000',                            desc: 'достаточно хорошая жизнь, апартаменты у Эйфелевой, Audi e-tron, девушка', c:'t5' }
+        name: 'Paris', unit: '\u20AC/yr', label: 'enter salary (\u20AC/yr):', ph: 150000, note: '',
+        sym: '\u20AC', pre: true, locale: 'de-DE', sep: '.',
+        base: [120000, 180000, 270000, 450000],
+        descs: [
+            'лютейшая нищета, chambre de bonne 9м\u00B2, багет как основное блюдо',
+            'обычная нищета, студия за периферик, вино из Monoprix, кино раз в месяц',
+            'нормальная жизнь, квартира в 11-м, ипотека на 25 лет, Peugeot 308',
+            'хорошая жизнь, квартира в Марэ, ипотека на 15 лет, Лазурный берег летом',
+            'достаточно хорошая жизнь, апартаменты у Эйфелевой, Audi e-tron, девушка'
         ]
     },
     bali: {
-        name: 'Бали',
-        unit: '$/мес',
-        label: 'введи зп ($/мес):',
-        ph: '3000',
-        note: 'digital nomad edition',
-        fmt: v => '$' + v.toLocaleString('en-US') + '/мес',
-        tiers: [
-            { max: 1500,     range: 'x < $1,500',                         desc: 'лютейшая нищета, рис с темпе, скутер без прав', c:'t1' },
-            { max: 3000,     range: '$1,500 < x < $3,000',                 desc: 'обычная нищета, вилла с тараканами, варунг каждый день', c:'t2' },
-            { max: 5000,     range: '$3,000 < x < $5,000',                 desc: 'нормальная жизнь, вилла с бассейном, коворкинг в Чангу', c:'t3' },
-            { max: 8000,     range: '$5,000 < x < $8,000',                 desc: 'хорошая жизнь, личный сёрф-тренер, острова на выходных', c:'t4' },
-            { max: Infinity, range: 'x > $8,000',                          desc: 'достаточно хорошая жизнь, клифф-вилла в Улувату, скутер Vespa, девушка', c:'t5' }
+        name: 'Бали', unit: '$/мес', label: 'введи зп ($/мес):', ph: 3000, note: 'digital nomad edition',
+        sym: '$', pre: true, locale: 'en-US', sep: ',',
+        base: [1500, 3000, 5000, 8000],
+        descs: [
+            'лютейшая нищета, рис с темпе, скутер без прав',
+            'обычная нищета, вилла с тараканами, варунг каждый день',
+            'нормальная жизнь, вилла с бассейном, коворкинг в Чангу',
+            'хорошая жизнь, личный сёрф-тренер, острова на выходных',
+            'достаточно хорошая жизнь, клифф-вилла в Улувату, скутер Vespa, девушка'
         ]
     }
 };
+
+// --- platform detection ---
+function detectPlatform() {
+    const ua = navigator.userAgent || '';
+    if (/Linux/i.test(ua) && !/Android/i.test(ua)) return { name: 'Linux', div: 4, icon: '\uD83D\uDC27' };
+    if (/Android/i.test(ua))                        return { name: 'Android', div: 3, icon: '\uD83E\uDD16' };
+    if (/Windows/i.test(ua))                        return { name: 'Windows', div: 3, icon: '\uD83E\uDE9F' };
+    return { name: 'Apple', div: 1, icon: '\uD83C\uDF4F' };
+}
+const PLATFORM = detectPlatform();
+
+function fmtNum(v, d) {
+    return v.toLocaleString(d.locale);
+}
+
+function fmtVal(v, d) {
+    return d.pre ? d.sym + fmtNum(v, d) : fmtNum(v, d) + ' ' + d.sym;
+}
+
+function getTiers(d) {
+    const div = PLATFORM.div;
+    const thresholds = d.base.map(v => Math.round(v / div));
+    const cls = ['t1','t2','t3','t4','t5'];
+    const tiers = [];
+    for (let i = 0; i < 5; i++) {
+        let range;
+        if (i === 0) {
+            range = 'x < ' + fmtVal(thresholds[0], d);
+        } else if (i < 4) {
+            range = fmtVal(thresholds[i-1], d) + ' < x < ' + fmtVal(thresholds[i], d);
+        } else {
+            range = 'x > ' + fmtVal(thresholds[3], d);
+        }
+        tiers.push({ max: i < 4 ? thresholds[i] : Infinity, range, desc: d.descs[i], c: cls[i] });
+    }
+    return tiers;
+}
 
 const KEYS = ['msk','spb','bay','nyc','london','paris','berlin','belgrade','dubai','tbilisi','bali'];
 const LABELS = {msk:'МСК',spb:'СПБ',bay:'SF/BAY',nyc:'NYC',london:'LDN',paris:'PAR',berlin:'BER',belgrade:'BEG',dubai:'DXB',tbilisi:'TBS',bali:'BALI'};
@@ -373,37 +377,43 @@ const out = document.getElementById('out');
 
 function render() {
     const d = DATA[loc];
+    const tiers = getTiers(d);
     const noteHtml = d.note ? `  <span class="note">// ${d.note}</span>` : '';
+    const platNote = PLATFORM.div > 1
+        ? `<div class="dim" style="margin:4px 0">// ${PLATFORM.icon} ${PLATFORM.name} detected \u2192 all thresholds \u00F7${PLATFORM.div}</div>`
+        : `<div class="dim" style="margin:4px 0">// ${PLATFORM.icon} ${PLATFORM.name} detected \u2192 base thresholds</div>`;
+    const ph = Math.round(d.ph / PLATFORM.div);
 
     out.innerHTML = `
-<div class="ascii"> ███████╗ █████╗ ██╗      █████╗ ██████╗ ██╗   ██╗
- ██╔════╝██╔══██╗██║     ██╔══██╗██╔══██╗╚██╗ ██╔╝
- ███████╗███████║██║     ███████║██████╔╝ ╚████╔╝
- ╚════██║██╔══██║██║     ██╔══██║██╔══██╗  ╚██╔╝
- ███████║██║  ██║███████╗██║  ██║██║  ██║   ██║
- ╚══════╝╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝╚═╝  ╚═╝   ╚═╝</div>
-<div class="sep">──────────────────────────────────────────────────────────</div>
+<div class="ascii"> \u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2557 \u2588\u2588\u2588\u2588\u2588\u2557 \u2588\u2588\u2557      \u2588\u2588\u2588\u2588\u2588\u2557 \u2588\u2588\u2588\u2588\u2588\u2588\u2557 \u2588\u2588\u2557   \u2588\u2588\u2557
+ \u2588\u2588\u2554\u2550\u2550\u2550\u2550\u255D\u2588\u2588\u2554\u2550\u2550\u2588\u2588\u2557\u2588\u2588\u2551     \u2588\u2588\u2554\u2550\u2550\u2588\u2588\u2557\u2588\u2588\u2554\u2550\u2550\u2588\u2588\u2557\u255A\u2588\u2588\u2557 \u2588\u2588\u2554\u255D
+ \u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2557\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2551\u2588\u2588\u2551     \u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2551\u2588\u2588\u2588\u2588\u2588\u2588\u2554\u255D \u255A\u2588\u2588\u2588\u2588\u2554\u255D
+ \u255A\u2550\u2550\u2550\u2550\u2588\u2588\u2551\u2588\u2588\u2554\u2550\u2550\u2588\u2588\u2551\u2588\u2588\u2551     \u2588\u2588\u2554\u2550\u2550\u2588\u2588\u2551\u2588\u2588\u2554\u2550\u2550\u2588\u2588\u2557  \u255A\u2588\u2588\u2554\u255D
+ \u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2551\u2588\u2588\u2551  \u2588\u2588\u2551\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2557\u2588\u2588\u2551  \u2588\u2588\u2551\u2588\u2588\u2551  \u2588\u2588\u2551   \u2588\u2588\u2551
+ \u255A\u2550\u2550\u2550\u2550\u2550\u2550\u255D\u255A\u2550\u255D  \u255A\u2550\u255D\u255A\u2550\u2550\u2550\u2550\u2550\u2550\u255D\u255A\u2550\u255D  \u255A\u2550\u255D\u255A\u2550\u255D  \u255A\u2550\u255D   \u255A\u2550\u255D</div>
+<div class="sep">\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500</div>
 <div class="prompt">select --location</div>
 <div class="toggle-row">
 ${KEYS.map(k => `    <button class="btn ${loc===k?'active':''}" onclick="loc='${k}';render()">[ ${LABELS[k]} ]</button>`).join('\n')}
 </div>
-<div class="sep">──────────────────────────────────────────────────────────</div>
+<div class="sep">\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500</div>
 <div class="prompt">cat /etc/salary/${loc}_tiers.conf</div>
 <div class="dim" style="margin:6px 0">// ${d.name} | ${d.unit}${noteHtml}</div>
+${platNote}
 <div id="tiers">
-${d.tiers.map((t,i) => `<div class="tier ${t.c}" style="animation-delay:${i*0.1}s" data-idx="${i}">
+${tiers.map((t,i) => `<div class="tier ${t.c}" style="animation-delay:${i*0.1}s" data-idx="${i}">
     <div class="tier-range">${t.range}</div>
     <div class="tier-desc">${t.desc}</div>
 </div>`).join('')}
 </div>
-<div class="sep">──────────────────────────────────────────────────────────</div>
+<div class="sep">\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500</div>
 <div class="prompt">check --salary</div>
 <div class="input-row">
-    <label>❯ ${d.label}</label>
-    <input class="salary-input" id="sal" type="text" placeholder="${d.ph}" autofocus>
+    <label>\u276F ${d.label}</label>
+    <input class="salary-input" id="sal" type="text" placeholder="${ph}" autofocus>
 </div>
 <div class="result" id="res"></div>
-<div class="footer">salary.exe v3.0 · жизненная правда<span class="cursor-blink"></span></div>`;
+<div class="footer">salary.exe v4.0 \u00B7 \u0436\u0438\u0437\u043D\u0435\u043D\u043D\u0430\u044F \u043F\u0440\u0430\u0432\u0434\u0430<span class="cursor-blink"></span></div>`;
 
     document.getElementById('sal').addEventListener('input', check);
     document.getElementById('sal').addEventListener('keyup', function(e) { if (e.key === 'Enter') check(); });
@@ -418,14 +428,16 @@ function check() {
     if (isNaN(val)) { res.innerHTML = ''; return; }
 
     const d = DATA[loc];
-    let found = d.tiers.length - 1;
-    for (let i = 0; i < d.tiers.length; i++) {
-        if (val < d.tiers[i].max) { found = i; break; }
+    const tiers = getTiers(d);
+    let found = tiers.length - 1;
+    for (let i = 0; i < tiers.length; i++) {
+        if (val < tiers[i].max) { found = i; break; }
     }
     tierEls[found]?.classList.add('highlight');
 
     const icons = ['\u2620\uFE0F','\uD83D\uDE10','\uD83D\uDE42','\uD83D\uDE0E','\uD83C\uDFC6'];
-    res.innerHTML = `<span class="result-text">${icons[found]} ${d.fmt(val)} — ${d.tiers[found].desc}</span>`;
+    const formatted = fmtVal(val, d) + (d.unit.includes('/') ? '/' + d.unit.split('/')[1] : '');
+    res.innerHTML = `<span class="result-text">${icons[found]} ${formatted} \u2014 ${tiers[found].desc}</span>`;
 }
 
 render();
