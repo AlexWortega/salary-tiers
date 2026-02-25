@@ -262,15 +262,15 @@ const DATA = {
         name: 'London',
         unit: '\u00A3/yr',
         label: 'enter salary (\u00A3/yr):',
-        ph: '90000',
+        ph: '400000',
         note: '',
         fmt: v => '\u00A3' + v.toLocaleString('en-GB') + '/yr',
         tiers: [
-            { max: 75000,    range: 'x < \u00A375,000',                          desc: 'лютейшая нищета, зона 6, бобы на тосте, час на Elizabeth line в одну сторону', c:'t1' },
-            { max: 120000,   range: '\u00A375,000 < x < \u00A3120,000',           desc: 'обычная нищета, ипотека на 35 лет, паб раз в неделю, Tesco meal deal', c:'t2' },
-            { max: 180000,   range: '\u00A3120,000 < x < \u00A3180,000',          desc: 'нормальная жизнь, ипотека на 20 лет, зона 2, Volkswagen Golf', c:'t3' },
-            { max: 300000,   range: '\u00A3180,000 < x < \u00A3300,000',          desc: 'хорошая жизнь, таунхаус в зоне 2, Ибица на выходных, Waitrose', c:'t4' },
-            { max: Infinity, range: 'x > \u00A3300,000',                          desc: 'достаточно хорошая жизнь, дом в Челси, Range Rover, девушка', c:'t5' }
+            { max: 360000,   range: 'x < \u00A3360,000',                          desc: 'лютейшая нищета, зона 6, бобы на тосте, час на Elizabeth line в одну сторону', c:'t1' },
+            { max: 540000,   range: '\u00A3360,000 < x < \u00A3540,000',           desc: 'обычная нищета, ипотека на 35 лет, паб раз в неделю, Tesco meal deal', c:'t2' },
+            { max: 810000,   range: '\u00A3540,000 < x < \u00A3810,000',           desc: 'нормальная жизнь, ипотека на 20 лет, зона 2, Volkswagen Golf', c:'t3' },
+            { max: 1350000,  range: '\u00A3810,000 < x < \u00A31,350,000',         desc: 'хорошая жизнь, таунхаус в зоне 2, Ибица на выходных, Waitrose', c:'t4' },
+            { max: Infinity, range: 'x > \u00A31,350,000',                         desc: 'достаточно хорошая жизнь, дом в Челси, Range Rover, девушка', c:'t5' }
         ]
     },
     berlin: {
