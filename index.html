@@ -200,7 +200,7 @@
 const DATA = {
     msk: {
         name: 'Москва', unit: '₽/мес', label: 'введи зп (₽/мес):', ph: 300000, note: '',
-        sym: '₽', pre: false, locale: 'ru-RU', sep: ' ',
+        sym: '₽', pre: false, locale: 'ru-RU',
         base: [200000, 350000, 600000, 1000000],
         descs: [
             'лютейшая нищета на грани выживания',
@@ -212,7 +212,7 @@ const DATA = {
     },
     spb: {
         name: 'Санкт-Петербург', unit: '₽/мес', label: 'введи зп (₽/мес):', ph: 200000, note: '',
-        sym: '₽', pre: false, locale: 'ru-RU', sep: ' ',
+        sym: '₽', pre: false, locale: 'ru-RU',
         base: [150000, 280000, 500000, 800000],
         descs: [
             'лютейшая нищета, шаверма — роскошь',
@@ -224,7 +224,7 @@ const DATA = {
     },
     bay: {
         name: 'Bay Area', unit: '$/yr', label: 'enter salary ($/yr):', ph: 200000, note: '',
-        sym: '$', pre: true, locale: 'en-US', sep: ',',
+        sym: '$', pre: true, locale: 'en-US',
         base: [150000, 230000, 350000, 600000],
         descs: [
             'лютейшая нищета, комната на троих в Саннивейле',
@@ -236,7 +236,7 @@ const DATA = {
     },
     nyc: {
         name: 'New York', unit: '$/yr', label: 'enter salary ($/yr):', ph: 180000, note: '',
-        sym: '$', pre: true, locale: 'en-US', sep: ',',
+        sym: '$', pre: true, locale: 'en-US',
         base: [130000, 200000, 320000, 550000],
         descs: [
             'лютейшая нищета, шкаф в Бруклине за $2500/мес',
@@ -248,7 +248,7 @@ const DATA = {
     },
     london: {
         name: 'London', unit: '\u00A3/yr', label: 'enter salary (\u00A3/yr):', ph: 400000, note: '',
-        sym: '\u00A3', pre: true, locale: 'en-GB', sep: ',',
+        sym: '\u00A3', pre: true, locale: 'en-GB',
         base: [360000, 540000, 810000, 1350000],
         descs: [
             'лютейшая нищета, зона 6, бобы на тосте, час на Elizabeth line в одну сторону',
@@ -260,7 +260,7 @@ const DATA = {
     },
     berlin: {
         name: 'Berlin', unit: '\u20AC/yr', label: 'enter salary (\u20AC/yr):', ph: 80000, note: '',
-        sym: '\u20AC', pre: true, locale: 'de-DE', sep: '.',
+        sym: '\u20AC', pre: true, locale: 'de-DE',
         base: [65000, 100000, 160000, 250000],
         descs: [
             'лютейшая нищета, WG на пятерых, кебаб за 4 евро — роскошь, Pfand собираешь',
@@ -272,7 +272,7 @@ const DATA = {
     },
     dubai: {
         name: 'Dubai', unit: '$/yr', label: 'enter salary ($/yr):', ph: 100000, note: 'tax-free zone',
-        sym: '$', pre: true, locale: 'en-US', sep: ',',
+        sym: '$', pre: true, locale: 'en-US',
         base: [70000, 120000, 200000, 350000],
         descs: [
             'лютейшая нищета, комната в Дейре, метро и жара',
@@ -284,7 +284,7 @@ const DATA = {
     },
     tbilisi: {
         name: 'Тбилиси', unit: '$/мес', label: 'введи зп ($/мес):', ph: 4000, note: 'IT-релокант edition',
-        sym: '$', pre: true, locale: 'en-US', sep: ',',
+        sym: '$', pre: true, locale: 'en-US',
         base: [2000, 3500, 5500, 9000],
         descs: [
             'лютейшая нищета, хинкали считаешь поштучно',
@@ -296,7 +296,7 @@ const DATA = {
     },
     belgrade: {
         name: 'Belgrade', unit: '\u20AC/мес', label: 'введи зп (\u20AC/мес):', ph: 7000, note: 'IT-релокант edition',
-        sym: '\u20AC', pre: true, locale: 'de-DE', sep: '.',
+        sym: '\u20AC', pre: true, locale: 'de-DE',
         base: [4500, 8400, 13500, 21000],
         descs: [
             'лютейшая нищета, ћевапи считаешь поштучно',
@@ -308,7 +308,7 @@ const DATA = {
     },
     paris: {
         name: 'Paris', unit: '\u20AC/yr', label: 'enter salary (\u20AC/yr):', ph: 150000, note: '',
-        sym: '\u20AC', pre: true, locale: 'de-DE', sep: '.',
+        sym: '\u20AC', pre: true, locale: 'de-DE',
         base: [120000, 180000, 270000, 450000],
         descs: [
             'лютейшая нищета, chambre de bonne 9м\u00B2, багет как основное блюдо',
@@ -320,7 +320,7 @@ const DATA = {
     },
     bali: {
         name: 'Бали', unit: '$/мес', label: 'введи зп ($/мес):', ph: 3000, note: 'digital nomad edition',
-        sym: '$', pre: true, locale: 'en-US', sep: ',',
+        sym: '$', pre: true, locale: 'en-US',
         base: [1500, 3000, 5000, 8000],
         descs: [
             'лютейшая нищета, рис с темпе, скутер без прав',
@@ -342,6 +342,15 @@ function detectPlatform() {
 }
 const PLATFORM = detectPlatform();
 
+// round to a clean number after dividing
+function niceRound(v) {
+    if (v >= 100000) return Math.round(v / 5000) * 5000;
+    if (v >= 10000)  return Math.round(v / 1000) * 1000;
+    if (v >= 1000)   return Math.round(v / 500) * 500;
+    if (v >= 100)    return Math.round(v / 50) * 50;
+    return Math.round(v);
+}
+
 function fmtNum(v, d) {
     return v.toLocaleString(d.locale);
 }
@@ -352,7 +361,7 @@ function fmtVal(v, d) {
 
 function getTiers(d) {
     const div = PLATFORM.div;
-    const thresholds = d.base.map(v => Math.round(v / div));
+    const thresholds = d.base.map(v => niceRound(v / div));
     const cls = ['t1','t2','t3','t4','t5'];
     const tiers = [];
     for (let i = 0; i < 5; i++) {
